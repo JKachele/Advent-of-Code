@@ -20,5 +20,27 @@ public class Day7a {
             positions[i] = Integer.parseInt(positionStrings[i]);
 
         System.out.println(Arrays.toString(positions));
+
+        int max = 0;
+        for(int i: positions) {
+            if(i > max)
+                max = i;
+        }
+
+        int minFuel = Integer.MAX_VALUE;
+        int minFuelPos = 0;
+        for(int i=0; i<max; i++) {
+            int fuel = 0;
+            for(int position: positions) {
+                fuel += Math.abs(position - i);
+            }
+            if(fuel < minFuel) {
+                minFuel = fuel;
+                minFuelPos = i;
+            }
+        }
+
+        System.out.printf("Fuel cost at position %d - %d", minFuelPos, minFuel);
+
     }
 }
