@@ -32,7 +32,7 @@ public class Day7a {
         for(int i=0; i<max; i++) {
             int fuel = 0;
             for(int position: positions) {
-                fuel += Math.abs(position - i);
+                fuel += Math.abs(position - i + 1);
             }
             if(fuel < minFuel) {
                 minFuel = fuel;
