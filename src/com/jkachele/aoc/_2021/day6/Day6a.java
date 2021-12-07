@@ -16,11 +16,11 @@ public class Day6a {
         System.out.println(line);
 
         String[] ageStrings = line.split(",");
-        ArrayList<LanternFish> fishies = new ArrayList<>();
+        ArrayList<Integer> cycles = new ArrayList<>();
 
         for(String ageString: ageStrings) {
             int age = Integer.parseInt(ageString);
-            fishies.add(new LanternFish(age));
+            cycles.add(age);
         }
 
 
@@ -28,17 +28,23 @@ public class Day6a {
         for(int i=0; i<80; i++) {
             int numNewFish = 0;
             //System.out.printf("Day %d - %s%n", i, fishies);
-            for(LanternFish fish: fishies) {
-                if(fish.age1Day())
+            for(int j=0; j<cycles.size(); j++) {
+                int timer = cycles.get(j);
+                if(timer == 0) {
+                    cycles.set(j, 6);
                     numNewFish++;
+                }
+                else {
+                    cycles.set(j,timer - 1);
+                }
             }
             for(int j=0; j<numNewFish; j++) {
-                fishies.add(new LanternFish(8));
+                cycles.add(8);
             }
         }
 
-        System.out.println(fishies);
-        System.out.println(fishies.size());
+        System.out.println(cycles);
+        System.out.println(cycles.size());
 
     }
 }
