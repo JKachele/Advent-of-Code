@@ -36,4 +36,8 @@ public class LanternFish {
         }
     }
 
+    public String toString() {
+        return Integer.toString(timer);
+    }
+
 }

@@ -36,5 +36,8 @@ public class Day6a {
             }
         }
 
+        System.out.println(fishies);
+        System.out.println(fishies.size());
+
     }
 }
