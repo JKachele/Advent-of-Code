@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Day1b {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("E:\\JavaProjects\\AdventOfCode\\src\\com\\jkachele\\aoc\\_2021\\day1\\input.txt");
+        File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day1\\input.txt");
         Scanner fileIn = new Scanner(file);
         ArrayList<Integer> depths = new ArrayList<>();
         ArrayList<Integer> windowDepths = new ArrayList<>();

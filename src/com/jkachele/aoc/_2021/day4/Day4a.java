@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Day4a {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("E:\\JavaProjects\\AdventOfCode\\src\\com\\jkachele\\aoc\\_2021\\day4\\input.txt");
+        File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day4\\input.txt");
         Scanner fileIn = new Scanner(file);
         ArrayList<Board> boards = new ArrayList<>();
 
