@@ -21,18 +21,7 @@ public class Day6b {
 
         for(String ageString: ageStrings) {
             int age = Integer.parseInt(ageString);
-            switch(age) {
-                case 0 -> ages[0]++;
-                case 1 -> ages[1]++;
-                case 2 -> ages[2]++;
-                case 3 -> ages[3]++;
-                case 4 -> ages[4]++;
-                case 5 -> ages[5]++;
-                case 6 -> ages[6]++;
-                case 7 -> ages[7]++;
-                case 8 -> ages[8]++;
-                default -> System.out.println("Age too high");
-            }
+            ages[age]++;
         }
 
 
