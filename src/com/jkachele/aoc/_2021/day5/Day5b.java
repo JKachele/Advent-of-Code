@@ -59,6 +59,43 @@ public class Day5b {
                 for(int x=minX; x<=maxX; x++)
                     diagram[x][y]++;
             }
+            //if not horizontal or vertical, it is 45 degree diagonal
+            else {
+                int x1 = line[0][0];
+                int y1 = line[0][1];
+                int x2 = line[1][0];
+                int y2 = line[1][1];
+                int dx = x2 - x1;
+                int dy = y2 - y1;
+                //if both x and y are either increasing or decreasing, left diagonal
+                if(dx > 0 && dy > 0) {
+                    int y = y1;
+                    for(int x=x1; x<=x2; x++) {
+                        diagram[x][y]++;
+                        y++;
+                    }
+                } else if(dx < 0 && dy < 0) {
+                    int y = y2;
+                    for(int x=x2; x<=x1; x++) {
+                        diagram[x][y]++;
+                        y++;
+                    }
+                }
+                //if dx and dy are not the same sign, right diagonal
+                else if(dx > 0) {
+                    int y = y1;
+                    for(int x=x1; x<=x2; x++) {
+                        diagram[x][y]++;
+                        y--;
+                    }
+                } else {
+                    int y = y2;
+                    for(int x=x2; x<=x1; x++) {
+                        diagram[x][y]++;
+                        y--;
+                    }
+                }
+            }
         }
 
         int score = 0;
