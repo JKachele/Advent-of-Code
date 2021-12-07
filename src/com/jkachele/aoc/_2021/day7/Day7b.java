@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Day7b {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day7\\input.txt");
+        //File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day7\\testInput.txt");
         Scanner fileIn = new Scanner(file);
 
         String line = fileIn.nextLine();
@@ -33,7 +34,7 @@ public class Day7b {
             int fuel = 0;
             for(int position: positions) {
                 int distance = Math.abs(position - i + 1);
-                fuel += ((distance * (distance - 1)) / 2);
+                fuel += ((distance * (distance + 1)) / 2);
             }
             if(fuel < minFuel) {
                 minFuel = fuel;
