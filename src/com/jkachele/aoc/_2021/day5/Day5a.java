@@ -60,5 +60,19 @@ public class Day5a {
                     diagram[x][y]++;
             }
         }
+
+        int score = 0;
+
+        for(int[] row: diagram) {
+            for(int point: row) {
+                System.out.printf("%d ", point);
+                if(point > 1)
+                    score++;
+            }
+            System.out.println();
+        }
+
+        System.out.printf("Score: %d%n", score);
+
     }
 }
