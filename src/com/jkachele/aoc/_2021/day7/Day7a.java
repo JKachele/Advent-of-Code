@@ -12,7 +12,6 @@ public class Day7a {
 
         String line = fileIn.nextLine();
         fileIn.close();
-        System.out.println(line);
 
         String[] positionStrings = line.split(",");
         int[] positions = new int[positionStrings.length];
