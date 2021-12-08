@@ -1,26 +1,20 @@
 package com.jkachele.aoc._2020.day4;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Day4a {
+    public static void main(String[] args) throws FileNotFoundException {
+        File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2020\\day4\\input.txt");
+        Scanner fileIn = new Scanner(file);
+        ArrayList<String> lines = new ArrayList<>();
 
-    public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("Text Docs\\2020Day4.txt"));
-        ArrayList<String> passports = new ArrayList<>();
-
-        while(fileIn.hasNext()) {
-            String temp = "";
-            String input;
-            while(!(input = fileIn.nextLine()).equals("")) {
-                input.replace(':', ' ');
-                temp.concat(" "+input);
-                passports.add(temp);
-            }
+        while (fileIn.hasNext()) {
+            lines.add(fileIn.nextLine());
         }
-
-        System.out.println(passports);
-
+        fileIn.close();
+        System.out.println(lines);
     }
 }

@@ -7,21 +7,21 @@ import java.io.File;
 public class Day1b {
 
     public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("Text Docs\\2019Day1.txt"));
+        Scanner fileIn = new Scanner(new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2019\\day1\\input.txt"));
         ArrayList<Integer> mass = new ArrayList<>();
 
         while(fileIn.hasNextInt()) {
             mass.add(fileIn.nextInt());
         }
+        fileIn.close();
 
         int total = 0;
 
-        for(int i = 0; i < mass.size(); i++) {
-            int temp = mass.get(i);
-            int add = ((int)(temp / 3)) - 2;
-            while(add > 0) {
+        for (int temp : mass) {
+            int add = (temp / 3) - 2;
+            while (add > 0) {
                 total += add;
-                add = ((int)(add / 3)) - 2;
+                add = (add / 3) - 2;
             }
         }
 

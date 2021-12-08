@@ -7,18 +7,18 @@ import java.io.File;
 public class Day1a {
 
     public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("Text Docs\\2019Day1.txt"));
+        Scanner fileIn = new Scanner(new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2019\\day1\\input.txt"));
         ArrayList<Integer> mass = new ArrayList<>();
 
         while(fileIn.hasNextInt()) {
             mass.add(fileIn.nextInt());
         }
+        fileIn.close();
 
         int total = 0;
 
-        for(int i = 0; i < mass.size(); i++) {
-            int temp = mass.get(i);
-            total += ((int)(temp / 3)) - 2;
+        for (int temp : mass) {
+            total += (temp / 3) - 2;
         }
 
         System.out.print(total);
