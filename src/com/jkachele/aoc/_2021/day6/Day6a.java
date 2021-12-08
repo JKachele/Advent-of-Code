@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Day6a {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day6\\input.txt");
-        //File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day6\\testInput.txt");
+        //File file = new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2021\\day6\\testInput.txt.txt");
         Scanner fileIn = new Scanner(file);
 
         String line = fileIn.nextLine();
