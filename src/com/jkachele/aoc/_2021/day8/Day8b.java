@@ -19,20 +19,44 @@ public class Day8b {
         System.out.println(lines);
 
         String[][] inDigits = new String[lines.size()][10];
-        //String[][] outDigits = new String[lines.size()][4];
+        String[][] outDigits = new String[lines.size()][4];
 
         for(int i=0; i<lines.size(); i++) {
             String[] values = lines.get(i).split(" \\| ");
             String[] inputValues = values[0].split(" ");
-            //String[] outputValues = values[1].split(" ");
+            String[] outputValues = values[1].split(" ");
             inDigits[i] = inputValues;
-            //outDigits[i] = outputValues;
+            outDigits[i] = outputValues;
         }
 
-        for(String[] inDigit : inDigits) {
-            String[] key = getKey(inDigit);
-            System.out.println(Arrays.toString(key));
+        int sum = 0;
+
+        for(int i=0; i<inDigits.length; i++) {
+            String[] key = getKey(inDigits[i]);
+            System.out.printf("Key: %s - Output: ", Arrays.toString(key));
+            StringBuilder outputString = new StringBuilder();
+            for(String outDigit : outDigits[i]) {
+                for(int k=0; k<10; k++) {
+                    if(outDigit.length() == key[k].length()) {
+                        boolean matches = true;
+                        for(int j=0; j<outDigit.length(); j++) {
+                            char c = outDigit.charAt(j);
+                            if (!key[k].contains(String.valueOf(c))) {
+                                matches = false;
+                                break;
+                            }
+                        }
+                        if(matches)
+                            outputString.append(k);
+                    }
+                }
+            }
+            int output = Integer.parseInt(outputString.toString());
+            System.out.println(output);
+            sum += output;
         }
+
+        System.out.printf("Sum: %d", sum);
     }
 
     public static String[] getKey(String[] digits) {
@@ -62,31 +86,29 @@ public class Day8b {
         for(String digit : twoFiveSix) {
             if(digit.length() == 6) {
                 key[6] = digit;
-                unknownDigits.remove(digit);
                 if(digit.contains(String.valueOf(one1)))
                     segmentF = one1;
                 else
                     segmentF = one2;
             }
         }
+        unknownDigits.remove(key[6]);
+        twoFiveSix.remove(key[6]);
         for(String digit : twoFiveSix) {
-            if(digit.contains(String.valueOf(segmentF))) {
+            if(digit.contains(String.valueOf(segmentF)))
                 key[5] = digit;
-                unknownDigits.remove(digit);
-            }
-            else {
+            else
                 key[2] = digit;
-                unknownDigits.remove(digit);
-            }
         }
+        unknownDigits.remove(key[5]);
+        unknownDigits.remove(key[2]);
 
         //sets 3
         for(String digit : unknownDigits) {
-            if(digit.length() == 5) {
+            if(digit.length() == 5)
                 key[3] = digit;
-                unknownDigits.remove(digit);
-            }
         }
+        unknownDigits.remove(key[3]);
 
         //sets last 2: 0 and 9
         char[] fourSegments = new char[4];
