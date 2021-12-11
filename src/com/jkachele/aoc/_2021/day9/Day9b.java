@@ -3,6 +3,7 @@ package com.jkachele.aoc._2021.day9;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day9b {
@@ -27,7 +28,33 @@ public class Day9b {
             }
         }
 
+        final int[][] offsets = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
 
+        ArrayList<Integer[]> lowPoints = new ArrayList<>();
+
+        for(int i=0; i<heights.length; i++) {
+            for(int j=0; j<heights[i].length; j++) {
+                boolean lower = true;
+                for(int[] offset: offsets) {
+                    try {
+                        if(heights[i][j] >= heights[i+offset[0]][j+offset[1]]) {
+                            lower = false;
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.print(".");
+                    }
+                }
+                if(lower) {
+                    lowPoints.add(new Integer[]{i, j});
+                }
+            }
+        }
+
+        System.out.println();
+        for(Integer[] i : lowPoints) {
+            System.out.print(Arrays.toString(i)+", ");
+        }
 
     }
 }
