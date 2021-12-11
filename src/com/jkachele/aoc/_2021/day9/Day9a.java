@@ -27,24 +27,21 @@ public class Day9a {
             }
         }
 
-        int maxX = heights.length;
-        int maxY = heights[0].length;
         int riskSum = 0;
 
-        final int[][] offsets = {{1, 1}, {1, 1}};
+        final int[][] offsets = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
 
-        for(int i=0; i<maxX; i++) {
-            for(int j=0; j<maxY; j++) {
+        for(int i=0; i<heights.length; i++) {
+            for(int j=0; j<heights[i].length; j++) {
                 boolean lower = true;
-                for(int k=i-1; k<=i+1; k++) {
-                    for(int l=j-1; l<=j+1; l++) {
-                        try {
-                            if(i!=k && j!=l && heights[i][j] >= heights[k][l]) {
-                                lower = false;
-                            }
-                        } catch (Exception e) {
-                            System.out.print(".");
+                for(int[] offset: offsets) {
+                    try {
+                        if(heights[i][j] >= heights[i+offset[0]][j+offset[1]]) {
+                            lower = false;
+                            break;
                         }
+                    } catch (Exception e) {
+                        System.out.print(".");
                     }
                 }
                 if(lower) {
