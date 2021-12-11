@@ -3,6 +3,7 @@ package com.jkachele.aoc._2021.day9;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day9a {
@@ -26,6 +27,9 @@ public class Day9a {
                 heights[i][j] = Integer.parseInt(String.valueOf(chars[j]));
             }
         }
+
+        for(int[] height : heights)
+            System.out.println(Arrays.toString(height));
 
         int riskSum = 0;
 

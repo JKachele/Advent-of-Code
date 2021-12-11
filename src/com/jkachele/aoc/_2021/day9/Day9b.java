@@ -2,9 +2,7 @@ package com.jkachele.aoc._2021.day9;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Day9b {
     public static void main(String[] args) throws FileNotFoundException {
@@ -18,26 +16,26 @@ public class Day9b {
         fileIn.close();
         System.out.println(lines);
 
-        int[][] heights = new int[lines.size()][lines.get(0).length()];
+        Point[][] points = new Point[lines.size()][lines.get(0).length()];
 
         for(int i=0; i<lines.size(); i++) {
             String line = lines.get(i);
             char[] chars = line.toCharArray();
             for(int j=0; j<chars.length; j++) {
-                heights[i][j] = Integer.parseInt(String.valueOf(chars[j]));
+                points[i][j] = new Point(i, j, Integer.parseInt(String.valueOf(chars[j])));
             }
         }
 
         final int[][] offsets = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
 
-        ArrayList<Integer[]> lowPoints = new ArrayList<>();
+        ArrayList<Point> lowPoints = new ArrayList<>();
 
-        for(int i=0; i<heights.length; i++) {
-            for(int j=0; j<heights[i].length; j++) {
+        for(int i=0; i<points.length; i++) {
+            for(int j=0; j<points[i].length; j++) {
                 boolean lower = true;
                 for(int[] offset: offsets) {
                     try {
-                        if(heights[i][j] >= heights[i+offset[0]][j+offset[1]]) {
+                        if(points[i][j].getHeight() >= points[i+offset[0]][j+offset[1]].getHeight()) {
                             lower = false;
                             break;
                         }
@@ -46,15 +44,51 @@ public class Day9b {
                     }
                 }
                 if(lower) {
-                    lowPoints.add(new Integer[]{i, j});
+                    lowPoints.add(points[i][j]);
                 }
             }
         }
 
         System.out.println();
-        for(Integer[] i : lowPoints) {
-            System.out.print(Arrays.toString(i)+", ");
+        for(Point i : lowPoints)
+            System.out.print(i+", ");
+        System.out.println();
+
+        ArrayList<Integer> basins = new ArrayList<>();
+
+        for(Point point : lowPoints) {
+            int basinSize = 0;
+            Queue<Point> open = new LinkedList<>();
+            ArrayList<Point> visited = new ArrayList<>();
+            open.add(point);
+            visited.add(point);
+            while(!open.isEmpty()) {
+                ArrayList<Point> adding = new ArrayList<>();
+                Point current = open.poll();
+                basinSize++;
+                int x = current.getPosX();
+                int y = current.getPosY();
+                for(int[] offset: offsets) {
+                    try {
+                        Point test = points[x+offset[0]][y+offset[1]];
+                        if(!visited.contains(test) && test.getHeight() != 9) {
+                            open.add(test);
+                            visited.add(test);
+                        }
+                    } catch (Exception e) {
+                        System.out.print(".");
+                    }
+                }
+            }
+            basins.add(basinSize);
         }
+
+        basins.sort(Collections.reverseOrder());
+
+        long output = (long) basins.get(0) * basins.get(1) * basins.get(2);
+
+        System.out.println();
+        System.out.println(output);
 
     }
 }
