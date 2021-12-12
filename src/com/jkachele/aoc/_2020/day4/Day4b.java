@@ -32,6 +32,65 @@ public class Day4b {
         passports.add(passport);
 
         System.out.println(passports);
+
+        int goodPassports = 0;
+
+        for(ArrayList<String> p: passports) {
+            int fields = 0;
+            String cidRegex = "cid:\\d+";
+            for(String field : p) {
+                if(!field.matches(cidRegex)) {
+                    fields++;
+                }
+            }
+            if(fields == 7) {
+                boolean valid = true;
+                for(String field : p) {
+                    String fieldName = field.substring(0, 3);
+                    switch(fieldName) {
+                        case "byr":
+                            if(!testBYR(field))
+                                valid = false;
+                            break;
+                        case "iyr":
+                            if(!testIYR(field))
+                                valid = false;
+                            break;
+                        case "eyr":
+                            if(!testEYR(field))
+                                valid = false;
+                            break;
+                        case "hgt":
+                            if(!testHGT(field))
+                                valid = false;
+                            break;
+                        case "hcl":
+                            if(!testHCL(field))
+                                valid = false;
+                            break;
+                        case "ecl":
+                            if(!testECL(field))
+                                valid = false;
+                            break;
+                        case "pid":
+                            if(!testPID(field))
+                                valid = false;
+                            break;
+                        case "cid":
+                            break;
+                        default:
+                            System.out.println("Error!");
+                    }
+                    if(!valid)
+                        break;
+                }
+                if(valid)
+                    goodPassports++;
+            }
+        }
+
+        System.out.println(goodPassports);
+
     }
 
     public static boolean testBYR(String field) {
@@ -62,7 +121,7 @@ public class Day4b {
     }
 
     public static boolean testHGT(String field) {
-        String regex = "hgt:\\d+(cm||in)";
+        String regex = "hgt:\\d+(cm|in)";
         if(field.matches(regex)) {
             String unit = field.substring(field.length()-2);
             int height = Integer.parseInt(field.substring(4, field.length()-2));
