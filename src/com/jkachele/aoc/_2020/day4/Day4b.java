@@ -37,7 +37,8 @@ public class Day4b {
     public static boolean testBYR(String field) {
         String regex = "byr:\\d{4}";
         if(field.matches(regex)) {
-
+            int year = Integer.parseInt(field.substring(4));
+            return year >= 1920 && year <= 2002;
         }
         return false;
     }
@@ -45,7 +46,8 @@ public class Day4b {
     public static boolean testIYR(String field) {
         String regex = "iyr:\\d{4}";
         if(field.matches(regex)) {
-
+            int year = Integer.parseInt(field.substring(4));
+            return year >= 2010 && year <= 2020;
         }
         return false;
     }
@@ -53,7 +55,8 @@ public class Day4b {
     public static boolean testEYR(String field) {
         String regex = "eyr:\\d{4}";
         if(field.matches(regex)) {
-
+            int year = Integer.parseInt(field.substring(4));
+            return year >= 2020 && year <= 2030;
         }
         return false;
     }
@@ -61,28 +64,30 @@ public class Day4b {
     public static boolean testHGT(String field) {
         String regex = "hgt:\\d+(cm||in)";
         if(field.matches(regex)) {
-
+            String unit = field.substring(field.length()-2);
+            int height = Integer.parseInt(field.substring(4, field.length()-2));
+            if(unit.equals("cm")) {
+                return height >= 150 && height <= 193;
+            } else if(unit.equals("in")) {
+                return height >= 59 && height <= 76;
+            }
         }
         return false;
     }
 
     public static boolean testHCL(String field) {
         String regex = "hcl:#[a-f0-9]{6}";
-        if(field.matches(regex)) {
-
-        }
-        return false;
+        return field.matches(regex);
     }
 
     public static boolean testECL(String field) {
-        return false;
+        String[] colors = {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
+        String ecl = field.substring(4);
+        return Arrays.asList(colors).contains(ecl);
     }
 
     public static boolean testPID(String field) {
         String regex = "pid:\\d{9}";
-        if(field.matches(regex)) {
-
-        }
-        return false;
+        return field.matches(regex);
     }
 }
