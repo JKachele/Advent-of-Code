@@ -12,6 +12,10 @@ public class Cave {
     private boolean end;
 
     /* ***************Constructors*************** */
+    public Cave() {
+        this("", false);
+    }
+
     public Cave(String name, boolean large) {
         this.name = name;
         this.large = large;
@@ -74,12 +78,9 @@ public class Cave {
         this.connectingCaves.add(connectingCave);
     }
 
-    public String toString() {
-        if(start)
-            return "Start";
-        if(end)
-            return "End";
-        return large? "Large": "Small";
+    public void visit() {
+        if(!this.large)
+            this.visited = true;
     }
 
     public String printConnectingCaves() {
@@ -90,4 +91,16 @@ public class Cave {
         return sb.toString();
     }
 
+//    @Override
+//    public boolean equals(Object test){
+//        if(test != null && test.getClass() == this.getClass())
+//            return this.name.equals(((Cave) test).getName());
+//        else
+//            return false;
+//    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
