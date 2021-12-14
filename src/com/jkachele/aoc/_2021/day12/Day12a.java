@@ -76,7 +76,6 @@ public class Day12a {
     }
 
     public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
-
         if(current.equals(end)) {
             System.out.println(path);
             numPaths++;
