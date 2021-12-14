@@ -16,5 +16,18 @@ public class Day5a {
         }
         fileIn.close();
         System.out.println(lines);
+
+        char[][] seats = new char[lines.size()][lines.get(0).length()];
+
+        for(int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            for(int j = 0; j < line.length(); j++) {
+                seats[i][j] = line.charAt(j);
+            }
+        }
+
+        for(char[] seat: seats) {
+
+        }
     }
 }
