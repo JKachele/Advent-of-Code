@@ -86,7 +86,7 @@ public class Day12a {
         current.visit();
 
         for(Cave i: current.getConnectingCaves()) {
-            if(i.isVisited()) {
+            if(!i.isVisited()) {
                 path.add(i);
                 printAllPaths(i, end, caves, path);
                 path.remove(i);

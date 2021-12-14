@@ -91,14 +91,6 @@ public class Cave {
         return sb.toString();
     }
 
-//    @Override
-//    public boolean equals(Object test){
-//        if(test != null && test.getClass() == this.getClass())
-//            return this.name.equals(((Cave) test).getName());
-//        else
-//            return false;
-//    }
-
     @Override
     public String toString() {
         return name;
