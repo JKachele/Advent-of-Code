@@ -1,0 +1,93 @@
+package com.jkachele.aoc._2021.day12;
+
+import java.util.ArrayList;
+
+public class Cave {
+    /* ***************Instance Variables*************** */
+    private String name;
+    private boolean large;
+    private ArrayList<Cave> connectingCaves;
+    private boolean visited;
+    private boolean start;
+    private boolean end;
+
+    /* ***************Constructors*************** */
+    public Cave(String name, boolean large) {
+        this.name = name;
+        this.large = large;
+        connectingCaves = new ArrayList<>();
+        visited = false;
+    }
+
+    /* ***************Getters and Setters*************** */
+    //region
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isLarge() {
+        return large;
+    }
+
+    public void setLarge(boolean large) {
+        this.large = large;
+    }
+
+    public ArrayList<Cave> getConnectingCaves() {
+        return connectingCaves;
+    }
+
+    public void setConnectingCaves(ArrayList<Cave> connectingCaves) {
+        this.connectingCaves = connectingCaves;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean isStart() {
+        return start;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
+    public boolean isEnd() {
+        return end;
+    }
+
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
+    //endregion
+    /* ***************Methods*************** */
+    public void addConnectingCave(Cave connectingCave) {
+        this.connectingCaves.add(connectingCave);
+    }
+
+    public String toString() {
+        if(start)
+            return "Start";
+        if(end)
+            return "End";
+        return large? "Large": "Small";
+    }
+
+    public String printConnectingCaves() {
+        StringBuilder sb = new StringBuilder();
+        for(Cave cave : this.connectingCaves) {
+            sb.append(cave.getName()).append(" ");
+        }
+        return sb.toString();
+    }
+
+}
