@@ -69,13 +69,13 @@ public class Day12a {
 
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
-        printAllPaths(startCave, endCave, caves, path);
+        printAllPaths(startCave, endCave, path);
 
         System.out.println(numPaths);
 
     }
 
-    public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
+    public static void printAllPaths(Cave current, Cave end, ArrayList<Cave> path) {
         if(current.equals(end)) {
             System.out.println(path);
             numPaths++;
@@ -87,7 +87,7 @@ public class Day12a {
         for(Cave i: current.getConnectingCaves()) {
             if(!i.isVisited()) {
                 path.add(i);
-                printAllPaths(i, end, caves, path);
+                printAllPaths(i, end, path);
                 path.remove(i);
             }
         }

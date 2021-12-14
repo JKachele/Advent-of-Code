@@ -10,6 +10,8 @@ public class Cave {
     private boolean visited;
     private boolean start;
     private boolean end;
+    private boolean twiceCave;
+    private int timesVisited = 0;
 
     /* ***************Constructors*************** */
     public Cave() {
@@ -21,6 +23,7 @@ public class Cave {
         this.large = large;
         connectingCaves = new ArrayList<>();
         visited = false;
+        twiceCave = false;
     }
 
     /* ***************Getters and Setters*************** */
@@ -72,6 +75,22 @@ public class Cave {
     public void setEnd(boolean end) {
         this.end = end;
     }
+
+    public boolean isTwiceCave() {
+        return twiceCave;
+    }
+
+    public void setTwiceCave(boolean twiceCave) {
+        this.twiceCave = twiceCave;
+    }
+
+    public int getTimesVisited() {
+        return timesVisited;
+    }
+
+    public void setTimesVisited(int timesVisited) {
+        this.timesVisited = timesVisited;
+    }
     //endregion
     /* ***************Methods*************** */
     public void addConnectingCave(Cave connectingCave) {
@@ -79,7 +98,11 @@ public class Cave {
     }
 
     public void visit() {
-        if(!this.large)
+        if(!this.large && this.twiceCave) {
+            timesVisited++;
+            if (timesVisited > 1)
+                this.visited = true;
+        } else if(!this.large)
             this.visited = true;
     }
 

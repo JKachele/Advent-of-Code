@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Day12b {
 
     private static int numPaths = 0;
+    private static ArrayList<ArrayList<Cave>> paths = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/com/jkachele/aoc/_2021/day12/input.txt");
@@ -69,6 +70,15 @@ public class Day12b {
 
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
+        //loops through caves and sets one small cave to the one that can be visited twice
+        for(Map.Entry<String, Cave> entry: caves.entrySet()) {
+            if(!entry.getValue().isLarge()) {
+                entry.getValue().setTwiceCave(true);
+            }
+            printAllPaths(startCave, endCave, caves, path);
+            entry.getValue().setTwiceCave(false);
+        }
+
         printAllPaths(startCave, endCave, caves, path);
 
         System.out.println(numPaths);
@@ -76,8 +86,9 @@ public class Day12b {
     }
 
     public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
-        if(current.equals(end)) {
+        if(current.equals(end) && !isRepeatedPath(path)) {
             System.out.println(path);
+            paths.add(path);
             numPaths++;
             return;
         }
@@ -93,5 +104,13 @@ public class Day12b {
         }
 
         current.setVisited(false);
+    }
+
+    public static boolean isRepeatedPath(ArrayList<Cave> currentPath) {
+        for(ArrayList<Cave> path: paths) {
+            if(path.equals(currentPath))
+                return true;
+        }
+        return false;
     }
 }
