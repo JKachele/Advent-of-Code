@@ -17,9 +17,8 @@ public class Day12b {
         Scanner fileIn = new Scanner(file);
         ArrayList<String> lines = new ArrayList<>();
 
-        while (fileIn.hasNext()) {
+        while (fileIn.hasNext())
             lines.add(fileIn.nextLine());
-        }
         fileIn.close();
         System.out.println(lines);
 
