@@ -67,10 +67,11 @@ public class Day12b {
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
             System.out.printf("[%s: %s] ", entry.getKey(), entry.getValue().printConnectingCaves());
         }
+        System.out.println();
 
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
-        //loops through caves and sets one small cave to the one that can be visited twice
+
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
             if(!entry.getValue().isLarge()) {
                 entry.getValue().setTwiceCave(true);
@@ -82,11 +83,12 @@ public class Day12b {
         printAllPaths(startCave, endCave, caves, path);
 
         System.out.println(numPaths);
+        System.out.println(paths.size());
 
     }
 
     public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
-        if(current.equals(end) && !isRepeatedPath(path)) {
+        if(current.equals(end)) {
             System.out.println(path);
             paths.add(path);
             numPaths++;
@@ -96,7 +98,7 @@ public class Day12b {
         current.visit();
 
         for(Cave i: current.getConnectingCaves()) {
-            if(i.isVisited()) {
+            if(!i.isVisited()) {
                 path.add(i);
                 printAllPaths(i, end, caves, path);
                 path.remove(i);
