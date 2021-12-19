@@ -57,24 +57,45 @@ public class Day13a {
         for(Integer[] fold : folds) {
             System.out.printf("%s", Arrays.toString(fold));
         }
+        System.out.println();
 
         boolean[][] paper = new boolean[maxNum + 1][maxNum + 1];
 
         for(Integer[] dot : dots)
             paper[dot[0]][dot[1]] = true;
 
+        paper = fold(paper, folds.get(0)[0] == 0, folds.get(0)[1]);
 
+        int numDots = 0;
+        for(boolean[] row : paper) {
+            for(boolean dot: row) {
+                if(dot)
+                    numDots++;
+            }
+        }
+        System.out.println(numDots);
     }
 
-    public boolean[][] fold(boolean[][] paper, boolean x, int fold) {
+    public static boolean[][] fold(boolean[][] paper, boolean x, int fold) {
         boolean[][] newPaper;
         if(x) {
-            newPaper = new boolean[fold - 1][paper[0].length];
-            for(int i = fold - 1; i >= 0; i++) {
-
+            newPaper = new boolean[fold][paper[0].length];
+            for(int i = fold - 1; i >= 0; i--) {
+                int mirrorIndex = fold + (fold - i);
+                for(int j = 0; j < paper.length; j++) {
+                    if(paper[i][j] || paper[mirrorIndex][j])
+                        newPaper[i][j] = true;
+                }
             }
         } else {
-            newPaper = new boolean[paper.length][fold - 1];
+            newPaper = new boolean[paper.length][fold];
+            for(int i = 0; i < paper.length; i++) {
+                for(int j = fold - 1; j >= 0; j--) {
+                    int mirrorIndex = fold + (fold - j);
+                    if(paper[i][j] || paper[i][mirrorIndex])
+                        newPaper[i][j] = true;
+                }
+            }
         }
 
         return newPaper;
