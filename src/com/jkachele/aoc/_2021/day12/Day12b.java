@@ -82,7 +82,6 @@ public class Day12b {
         printAllPaths(startCave, endCave, caves, path);
 
         System.out.println(numPaths);
-        System.out.println(paths.size());
 
     }
 
