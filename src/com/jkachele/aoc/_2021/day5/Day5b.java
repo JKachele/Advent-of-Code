@@ -102,14 +102,14 @@ public class Day5b {
 
         for(int[] row: diagram) {
             for(int point: row) {
-                System.out.printf("%d ", point);
+                //System.out.printf("%d ", point);
                 if(point > 1)
                     score++;
             }
-            System.out.println();
+            //System.out.println();
         }
 
-        System.out.printf("Score: %d%n", score);
+        System.out.printf("%nScore: %d%n", score);
 
     }
 }

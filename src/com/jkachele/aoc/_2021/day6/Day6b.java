@@ -2,12 +2,13 @@ package com.jkachele.aoc._2021.day6;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day6b {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/com/jkachele/aoc/_2021/day6/input.txt");
-        //File file = new File("src/com/jkachele/aoc/_2021/day6/testInput.txt.txt");
+        //File file = new File("src/com/jkachele/aoc/_2021/day6/testInput.txt");
         Scanner fileIn = new Scanner(file);
 
         String line = fileIn.nextLine();
@@ -24,11 +25,9 @@ public class Day6b {
             ages[age]++;
         }
 
-
-
         //loops through 256 days
         for(int i=0; i<256; i++) {
-            System.out.printf("Day %d - %o%n", i, getTotal(ages));
+            System.out.printf("Day %d - %s: %d%n", i, Arrays.toString(ages), getTotal(ages));
             long numNewFish = ages[0];
             //shifts all the elements down by one
             for(int j=0; j<8; j++)
@@ -39,7 +38,7 @@ public class Day6b {
             ages[8] = numNewFish;
         }
 
-        System.out.printf("Day 256 - %o%n", getTotal(ages));
+        System.out.printf("Day 256 - %s: %d%n", Arrays.toString(ages),getTotal(ages));
     }
 
     //calculate total number of fish
