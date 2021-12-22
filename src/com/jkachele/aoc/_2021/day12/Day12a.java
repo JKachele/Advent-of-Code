@@ -13,6 +13,7 @@ public class Day12a {
 
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/com/jkachele/aoc/_2021/day12/input.txt");
+        //File file = new File("src/com/jkachele/aoc/_2021/day12/testInput.txt");
         Scanner fileIn = new Scanner(file);
         ArrayList<String> lines = new ArrayList<>();
 
@@ -58,6 +59,7 @@ public class Day12a {
                 startCave = cave;
             }
             else if(cave.getName().equals("end")) {
+                cave.setConnectingCaves(new ArrayList<>());
                 cave.setEnd(true);
                 endCave = cave;
             }
@@ -66,6 +68,7 @@ public class Day12a {
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
             System.out.printf("[%s: %s] ", entry.getKey(), entry.getValue().printConnectingCaves());
         }
+        System.out.println();
 
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
@@ -84,14 +87,14 @@ public class Day12a {
 
         current.visit();
 
-        for(Cave i: current.getConnectingCaves()) {
-            if(!i.isVisited()) {
-                path.add(i);
-                printAllPaths(i, end, path);
-                path.remove(i);
+        for(Cave connecting: current.getConnectingCaves()) {
+            if(!connecting.isVisited()) {
+                path.add(connecting);
+                printAllPaths(connecting, end, path);
+                path.remove(path.size() - 1);
             }
         }
 
-        current.setVisited(false);
+        current.unVisit();
     }
 }

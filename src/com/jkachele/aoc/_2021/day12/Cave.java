@@ -106,6 +106,12 @@ public class Cave {
             this.visited = true;
     }
 
+    public void unVisit() {
+        this.visited = false;
+        if(timesVisited > 0)
+            timesVisited--;
+    }
+
     public String printConnectingCaves() {
         StringBuilder sb = new StringBuilder();
         for(Cave cave : this.connectingCaves) {

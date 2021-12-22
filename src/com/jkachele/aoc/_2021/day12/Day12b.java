@@ -10,10 +10,11 @@ import java.util.Scanner;
 public class Day12b {
 
     private static int numPaths = 0;
-    private static ArrayList<ArrayList<Cave>> paths = new ArrayList<>();
+    private static final ArrayList<ArrayList<Cave>> paths = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/com/jkachele/aoc/_2021/day12/input.txt");
+        //File file = new File("src/com/jkachele/aoc/_2021/day12/testInput.txt");
         Scanner fileIn = new Scanner(file);
         ArrayList<String> lines = new ArrayList<>();
 
@@ -58,6 +59,7 @@ public class Day12b {
                 startCave = cave;
             }
             else if(cave.getName().equals("end")) {
+                cave.setConnectingCaves(new ArrayList<>());
                 cave.setEnd(true);
                 endCave = cave;
             }
@@ -71,39 +73,42 @@ public class Day12b {
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
 
+        printAllPaths(startCave, endCave, caves, path);
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
-            if(!entry.getValue().isLarge()) {
+            if(!entry.getValue().isLarge() && !entry.getValue().isStart() && !entry.getValue().isEnd()) {
                 entry.getValue().setTwiceCave(true);
+                printAllPaths(startCave, endCave, caves, path);
+                entry.getValue().setTwiceCave(false);
             }
-            printAllPaths(startCave, endCave, caves, path);
-            entry.getValue().setTwiceCave(false);
         }
 
         printAllPaths(startCave, endCave, caves, path);
 
-        System.out.println(numPaths);
-
+        System.out.println("\nFinished Calculations");
     }
 
     public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
         if(current.equals(end)) {
-            System.out.println(path);
-            paths.add(path);
-            numPaths++;
-            return;
+            if(!isRepeatedPath(path)){
+                ArrayList<Cave> copy = new ArrayList<>(path);
+                paths.add(copy);
+                numPaths++;
+                System.out.print("\rTotal Paths: "+numPaths);
+                return;
+            }
         }
 
         current.visit();
 
-        for(Cave i: current.getConnectingCaves()) {
-            if(!i.isVisited()) {
-                path.add(i);
-                printAllPaths(i, end, caves, path);
-                path.remove(i);
+        for(Cave connecting: current.getConnectingCaves()) {
+            if(!connecting.isVisited()) {
+                path.add(connecting);
+                printAllPaths(connecting, end, caves, path);
+                path.remove(path.size() - 1);
             }
         }
 
-        current.setVisited(false);
+        current.unVisit();
     }
 
     public static boolean isRepeatedPath(ArrayList<Cave> currentPath) {
