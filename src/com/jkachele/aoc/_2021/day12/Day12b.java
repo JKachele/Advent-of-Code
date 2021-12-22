@@ -73,7 +73,6 @@ public class Day12b {
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
 
-        //printAllPaths(startCave, endCave, path);
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
             if(!entry.getValue().isLarge() && !entry.getValue().isStart() && !entry.getValue().isEnd()) {
                 entry.getValue().setTwiceCave(true);
