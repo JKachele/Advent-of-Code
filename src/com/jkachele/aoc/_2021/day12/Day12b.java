@@ -73,21 +73,19 @@ public class Day12b {
         ArrayList<Cave> path = new ArrayList<>();
         path.add(startCave);
 
-        printAllPaths(startCave, endCave, caves, path);
+        //printAllPaths(startCave, endCave, path);
         for(Map.Entry<String, Cave> entry: caves.entrySet()) {
             if(!entry.getValue().isLarge() && !entry.getValue().isStart() && !entry.getValue().isEnd()) {
                 entry.getValue().setTwiceCave(true);
-                printAllPaths(startCave, endCave, caves, path);
+                printAllPaths(startCave, endCave, path);
                 entry.getValue().setTwiceCave(false);
             }
         }
 
-        printAllPaths(startCave, endCave, caves, path);
-
         System.out.println("\nFinished Calculations");
     }
 
-    public static void printAllPaths(Cave current, Cave end, HashMap<String, Cave> caves, ArrayList<Cave> path) {
+    public static void printAllPaths(Cave current, Cave end, ArrayList<Cave> path) {
         if(current.equals(end)) {
             if(!isRepeatedPath(path)){
                 ArrayList<Cave> copy = new ArrayList<>(path);
@@ -103,7 +101,7 @@ public class Day12b {
         for(Cave connecting: current.getConnectingCaves()) {
             if(!connecting.isVisited()) {
                 path.add(connecting);
-                printAllPaths(connecting, end, caves, path);
+                printAllPaths(connecting, end, path);
                 path.remove(path.size() - 1);
             }
         }
