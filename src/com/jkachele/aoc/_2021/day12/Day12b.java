@@ -85,14 +85,12 @@ public class Day12b {
     }
 
     public static void printAllPaths(Cave current, Cave end, ArrayList<Cave> path) {
-        if(current.equals(end)) {
-            if(!isRepeatedPath(path)){
-                ArrayList<Cave> copy = new ArrayList<>(path);
-                paths.add(copy);
-                numPaths++;
-                System.out.print("\rTotal Paths: "+numPaths);
-                return;
-            }
+        if(current.equals(end) && !isRepeatedPath(path)) {
+            ArrayList<Cave> copy = new ArrayList<>(path);
+            paths.add(copy);
+            numPaths++;
+            System.out.print("\rTotal Paths: "+numPaths);
+            return;
         }
 
         current.visit();
