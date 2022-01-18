@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Day14a {
     public static void main(String[] args) throws FileNotFoundException {
-        //File file = new File("src/com/jkachele/aoc/_2021/day14/input.txt");
-        File file = new File("src/com/jkachele/aoc/_2021/day14/testInput.txt");
+        File file = new File("src/com/jkachele/aoc/_2021/day14/input.txt");
+        //File file = new File("src/com/jkachele/aoc/_2021/day14/testInput.txt");
         Scanner fileIn = new Scanner(file);
         ArrayList<String> lines = new ArrayList<>();
 
@@ -53,8 +53,39 @@ public class Day14a {
             System.out.printf("Step %d - %s%n",i+1, template);
         }
 
-        int answer = 0;
+        ArrayList<Character> elements = new ArrayList<>();
+        ArrayList<Integer> elementNums = new ArrayList<>();
 
+        char[] polymer = template.toCharArray();
+        Arrays.sort(polymer);
+
+        int num = 0;
+        for(char c : polymer) {
+            if(!elements.contains(c)) {
+                if(!elements.isEmpty())
+                    elementNums.add(num);
+                elements.add(c);
+                num = 0;
+            }
+            num++;
+        }
+        elementNums.add(num);
+
+        System.out.println(elements);
+        System.out.println(elementNums);
+
+        int max = 0;
+        int min = elementNums.get(0);
+        for (int elementNum : elementNums) {
+            if (elementNum > max)
+                max = elementNum;
+            if (elementNum < min)
+                min = elementNum;
+        }
+
+        int answer = max - min;
+
+        System.out.println(answer);
 
     }
 }
