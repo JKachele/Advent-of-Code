@@ -6,16 +6,20 @@ import java.util.Scanner;
 public class Day3a {
 
     public static void main(String[] args) throws Exception{
-        Scanner tempFileIn = new Scanner(new File("Text Docs\\2020Day3.txt"));
+
+        File input = new File("src/com/jkachele/aoc/_2020/day3/input.txt");
+
+        Scanner fileSizeCounter = new Scanner(input);
         int Lines = 0;
         int Length = 0;
-        while(tempFileIn.hasNext()) {
-            String temp = tempFileIn.next();
+        while(fileSizeCounter.hasNext()) {
+            String temp = fileSizeCounter.next();
             Length  = temp.length();
             Lines++;
         }
-        tempFileIn.close();
-        Scanner fileIn = new Scanner(new File("Text Docs\\2020Day3.txt"));
+        fileSizeCounter.close();
+
+        Scanner fileIn = new Scanner(input);
         char field[][] = new char[Lines][Length];
 
         for(int i = 0; i < Lines; i++) {

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Day2b {
     public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("Text Docs\\2020Day2.txt"));
+        Scanner fileIn = new Scanner(new File("src/com/jkachele/aoc/_2020/day2/input.txt"));
         ArrayList<String> input = new ArrayList<>();
         ArrayList<Integer> indexH = new ArrayList<>();
         ArrayList<Integer> indexL = new ArrayList<>();

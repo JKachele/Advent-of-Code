@@ -7,7 +7,7 @@ import java.io.File;
 public class Day2a {
 
     public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("Text Docs\\2020Day2.txt"));
+        Scanner fileIn = new Scanner(new File("src/com/jkachele/aoc/_2020/day2/input.txt"));
         ArrayList<String> input = new ArrayList<>();
         ArrayList<Integer> rangeH = new ArrayList<>();
         ArrayList<Integer> rangeL = new ArrayList<>();
