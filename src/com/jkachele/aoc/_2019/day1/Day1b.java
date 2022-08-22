@@ -1,31 +1,33 @@
 package com.jkachele.aoc._2019.day1;
 
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Day1b {
+    public static void main(String[] args) {
+        String fileName = "src/com/jkachele/aoc/_2019/day1/input.txt";
+        //String fileName = "src/com/jkachele/aoc/_2019/day1/testInput.txt";
+        ArrayList<String> lines = readFile(fileName);
 
-    public static void main(String[] args) throws Exception{
-        Scanner fileIn = new Scanner(new File("E:\\JavaProjects\\Advent-of-Code\\src\\com\\jkachele\\aoc\\_2019\\day1\\input.txt"));
-        ArrayList<Integer> mass = new ArrayList<>();
+    }
 
-        while(fileIn.hasNextInt()) {
-            mass.add(fileIn.nextInt());
-        }
-        fileIn.close();
+    public static ArrayList<String> readFile(String fileName) {
+        ArrayList<String> lines = new ArrayList<>();
+        try {
+            File file = new File(fileName);
+            Scanner fileIn = new Scanner(file);
 
-        int total = 0;
-
-        for (int temp : mass) {
-            int add = (temp / 3) - 2;
-            while (add > 0) {
-                total += add;
-                add = (add / 3) - 2;
+            while (fileIn.hasNext()) {
+                lines.add(fileIn.nextLine());
             }
+            fileIn.close();
+            System.out.println(lines);
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+            System.exit(0);
         }
-
-        System.out.print(total);
-
+        return lines;
     }
 }
