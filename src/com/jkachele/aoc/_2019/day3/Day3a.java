@@ -82,7 +82,11 @@ public class Day3a {
     }
 
     public static void findIntersection(ArrayList<int[]> intersections, int[][] segmentV, int[][] segmentH) {
-        int[] result = new int[2];
+        if(isIntersection(segmentV, segmentH)) {
+            int[] result = new int[2];
+            result[0] = segmentV[0][0];
+            result[1] = segmentH[1][0];
+        }
     }
 
     public static boolean isIntersection(int[][] segV, int[][] segH) {
