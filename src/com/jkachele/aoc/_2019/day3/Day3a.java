@@ -25,6 +25,18 @@ public class Day3a {
         findSegments(line1, line1V, line1H);
         findSegments(line2, line2V, line2H);
 
+        //find all intersection points between the 2 lines.
+        ArrayList<int[]> intersections = new ArrayList<>();
+        for (int[][] segmentV : line1V) {
+            for (int[][] segmentH : line1H) {
+                findIntersection(intersections, segmentV, segmentH);
+            }
+        }
+        for (int[][] segmentV : line2V) {
+            for (int[][] segmentH : line2H) {
+                findIntersection(intersections, segmentV, segmentH);
+            }
+        }
 
     }
 
@@ -67,6 +79,14 @@ public class Day3a {
         result[1][1] = position2[1];
 
         return result;
+    }
+
+    public static void findIntersection(ArrayList<int[]> intersections, int[][] segmentV, int[][] segmentH) {
+        int[] result = new int[2];
+    }
+
+    public static boolean isIntersection(int[][] segV, int[][] segH) {
+        return segV[1][0] < segH[0][0] && segH[0][0] < segV[1][1] && segH[1][0] < segV[0][0] && segV[0][0] < segH[1][1];
     }
 
     public static ArrayList<String> readFile(String fileName) {
