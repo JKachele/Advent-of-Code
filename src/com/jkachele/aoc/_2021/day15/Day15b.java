@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class day15b {
+public class Day15b {
     public static void main(String[] args) {
         String fileName = "src/com/jkachele/aoc/_2021/day15/input.txt";
         //String fileName = "src/com/jkachele/aoc/_2021/day15/testInput.txt";

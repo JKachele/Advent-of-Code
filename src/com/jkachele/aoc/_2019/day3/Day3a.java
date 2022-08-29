@@ -38,6 +38,11 @@ public class Day3a {
             }
         }
 
+        System.out.println();
+        for(int[] intersection : intersections) {
+            System.out.print(Arrays.toString(intersection) + ", ");
+        }
+
     }
 
     public static void findSegments(String[] line, ArrayList<int[][]> lineV, ArrayList<int[][]> lineH) {
@@ -86,6 +91,7 @@ public class Day3a {
             int[] result = new int[2];
             result[0] = segmentV[0][0];
             result[1] = segmentH[1][0];
+            intersections.add(result);
         }
     }
 
