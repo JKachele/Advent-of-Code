@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Day3a {
+public class Day3b {
     public static void main(String[] args) {
         String fileName = "src/com/jkachele/aoc/_2019/day3/input.txt";
         //String fileName = "src/com/jkachele/aoc/_2019/day3/testInput.txt";
