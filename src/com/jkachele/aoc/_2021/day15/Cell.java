@@ -126,5 +126,15 @@ public class Cell {
         return String.format("RiskLevel: %d, PosX: %d, PosY: %d", riskLevel, posX, posY);
     }
 
+    public String toStringPath() {
+        String result;
+        if (path) {
+            result = String.format("*%d", riskLevel);
+        } else {
+            result = String.format("%d", riskLevel);
+        }
+        return result;
+    }
+
 
 }

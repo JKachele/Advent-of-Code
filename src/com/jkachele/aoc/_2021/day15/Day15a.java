@@ -3,7 +3,6 @@ package com.jkachele.aoc._2021.day15;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day15a {
@@ -23,15 +22,14 @@ public class Day15a {
         }
 
         AStar.initialize(cavern);
+        AStar.run();
 
-        /*
         for(Cell[] row: cavern) {
             for(Cell cell: row) {
-                System.out.print(cell.getHCost() + "\t");
+                System.out.print(cell.toStringPath() + "\t");
             }
             System.out.println();
         }
-        */
     }
 
     public static ArrayList<String> readFile(String fileName) {

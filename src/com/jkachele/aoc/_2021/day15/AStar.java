@@ -7,6 +7,7 @@ public class AStar {
     private static Cell[][] cells;
     private static Cell startCell;
     private static Cell targetCell;
+    private static int pathRisk;
 
     private static ArrayList<Cell> openCells = new ArrayList<>();
     private static ArrayList<Cell> closedCells = new ArrayList<>();
@@ -14,7 +15,6 @@ public class AStar {
     /* ***************Constructors*************** */
     public static void initialize(Cell[][] cells) {
         AStar.cells = cells;
-        calcHCost();
     }
 
     /* ***************Getters and Setters*************** */
@@ -42,6 +42,14 @@ public class AStar {
     public static void setClosedCells(ArrayList<Cell> closedCells) {
         AStar.closedCells = closedCells;
     }
+
+    public static int getPathRisk() {
+        return pathRisk;
+    }
+
+    public static void setPathRisk(int pathRisk) {
+        AStar.pathRisk = pathRisk;
+    }
     //endregion
     /* ***************Methods*************** */
     public static void run() {
@@ -59,6 +67,7 @@ public class AStar {
                 openCells.remove(currentCell);
                 closedCells.add(currentCell);
                 if(currentCell.getHCost() == 0) {
+                    setPath();
                     found = true;
                 } else {
                     openSurroundingCells(currentCell);
@@ -149,12 +158,13 @@ public class AStar {
     }
 
     private static void setPath() {
-
+        pathRisk = 0;
         Cell currentCell = targetCell;
-        while(currentCell != startCell) {
+        do {
+            pathRisk += currentCell.getRiskLevel();
             currentCell.setPath(true);
             currentCell = currentCell.getParentCell();
-        }
+        } while(currentCell != startCell);
     }
 
 }
