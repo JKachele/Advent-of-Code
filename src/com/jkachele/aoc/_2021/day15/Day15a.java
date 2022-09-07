@@ -13,15 +13,25 @@ public class Day15a {
 
         ArrayList<String> lines = readFile(fileName);
 
-        int[][] cavern = new int[lines.size()][lines.get(0).length()];
-        for(int i=0; i<lines.size(); i++) {
-            String line = lines.get(i);
-            for(int j=0; j<line.length(); j++) {
-                cavern[i][j] = Integer.parseInt(line.substring(j, j+1));
+        Cell[][] cavern = new Cell[lines.size()][lines.get(0).length()];
+        for(int y=0; y<lines.size(); y++) {
+            String line = lines.get(y);
+            for(int x=0; x<line.length(); x++) {
+                int riskLevel = Integer.parseInt(line.substring(x, x+1));
+                cavern[y][x] = new Cell(riskLevel, x, y);
             }
         }
 
-        System.out.println(Arrays.deepToString(cavern));
+        AStar.initialize(cavern);
+
+        /*
+        for(Cell[] row: cavern) {
+            for(Cell cell: row) {
+                System.out.print(cell.getHCost() + "\t");
+            }
+            System.out.println();
+        }
+        */
     }
 
     public static ArrayList<String> readFile(String fileName) {
