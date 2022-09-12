@@ -57,6 +57,7 @@ public class AStar {
         targetCell = cells[cells.length - 1][cells[0].length - 1];
         calcHCost();
         setFirstCell();
+        algLoop();
     }
 
     private static void algLoop() {
@@ -68,11 +69,14 @@ public class AStar {
                 closedCells.add(currentCell);
                 if(currentCell.getHCost() == 0) {
                     setPath();
+                    System.out.println("Found");
                     found = true;
                 } else {
+                    System.out.print(currentCell.toStringCellNumber() + " ");
                     openSurroundingCells(currentCell);
                 }
             } else {
+                System.out.println("Could not find Path");
                 found = true;
             }
         }
@@ -102,6 +106,9 @@ public class AStar {
                 int cellPosY = centerCell.getPosY() + y;
                 if((cellPosX >= 0 && cellPosX < cells[0].length) && (cellPosY >= 0 && cellPosY < cells.length)) {
                     Cell cell = cells[cellPosX][cellPosY];
+                    if(closedCells.contains(cell)) {
+                        continue;
+                    }
                     int gCost = centerCell.getGCost() + cell.getRiskLevel();
                     if(!openCells.contains(cell)) {
                         cell.setGCost(gCost);

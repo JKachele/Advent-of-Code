@@ -136,5 +136,9 @@ public class Cell {
         return result;
     }
 
+    public String toStringCellNumber() {
+        int cellNumber = (9 * posX + posY);
+        return String.format("%d", cellNumber);
+    }
 
 }
