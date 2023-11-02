@@ -28,6 +28,7 @@ public class Day3a {
                 field[i][j] = line.charAt(j);
             }
         }
+        fileIn.close();
 
         int trees = 0;
 
