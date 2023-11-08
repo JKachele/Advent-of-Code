@@ -31,8 +31,7 @@ public class Day6a {
         groups.add(temp);
 
         //removed duplicate answers from the groups
-        //noinspection unchecked
-        ArrayList<Character>[] groupAnswers = new ArrayList[groups.size()];
+        ArrayList<ArrayList<Character>> groupAnswers = new ArrayList<>();
         for (int i = 0; i < groups.size(); i++) {
             ArrayList<Character> answers = new ArrayList<>();
             //adds all the answers of first person in group
@@ -48,7 +47,7 @@ public class Day6a {
                     }
                 }
             }
-            groupAnswers[i] = answers;
+            groupAnswers.add(answers);
         }
         for(ArrayList<Character> answer : groupAnswers) {
             System.out.println(answer);
@@ -56,8 +55,8 @@ public class Day6a {
 
         //counts number os answers in the groups
         int[] answerCount = new int[groups.size()];
-        for (int i = 0; i < groupAnswers.length; i++) {
-            answerCount[i] = groupAnswers[i].size();
+        for (int i = 0; i < groupAnswers.size(); i++) {
+            answerCount[i] = groupAnswers.get(i).size();
         }
 
         //sum of all the answers in the groups

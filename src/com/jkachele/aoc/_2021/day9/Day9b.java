@@ -63,7 +63,6 @@ public class Day9b {
             open.add(point);
             visited.add(point);
             while(!open.isEmpty()) {
-                ArrayList<Point> adding = new ArrayList<>();
                 Point current = open.poll();
                 basinSize++;
                 int x = current.getPosX();

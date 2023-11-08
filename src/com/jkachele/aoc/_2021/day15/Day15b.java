@@ -10,7 +10,7 @@ public class Day15b {
         String fileName = "src/com/jkachele/aoc/_2021/day15/input.txt";
         //String fileName = "src/com/jkachele/aoc/_2021/day15/testInput.txt";
         ArrayList<String> lines = readFile(fileName);
-
+        System.out.println(lines);
     }
 
     public static ArrayList<String> readFile(String fileName) {
