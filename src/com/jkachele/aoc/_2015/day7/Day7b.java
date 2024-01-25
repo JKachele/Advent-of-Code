@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Day7a {
+public class Day7b {
     public static void main(String[] args) {
         final String fileName = "src/com/jkachele/aoc/_2015/day7/input.txt";
         // final String fileName = "src/com/jkachele/aoc/_2015/day7/testInput.txt";
@@ -16,6 +16,7 @@ public class Day7a {
 
         HashMap<String, Integer> wires = new HashMap<>();
         ArrayList<Gate> gates = new ArrayList<>();
+        ArrayList<Gate> gates2 = new ArrayList<>();
         for(String line: lines) {
             String[] lineParts = line.split(" ");
             String in1 = "";
@@ -54,8 +55,20 @@ public class Day7a {
             }
             Gate gate = new Gate(operator, in1, in2, out);
             gates.add(gate);
+            gates2.add(gate);
         }
 
+        runGates(wires, gates);
+        int a = wires.get("a");
+        wires.clear();
+        wires.put("b", a);
+        runGates(wires, gates2);
+
+        System.out.println();
+        System.out.println(wires.get("a"));
+    }
+
+    public static void runGates(HashMap<String, Integer> wires, ArrayList<Gate> gates) {
         while (!wires.containsKey("a")) {
             for (int i = 0; i < gates.size(); i++) {
                 Gate gate = gates.get(i);
@@ -109,8 +122,6 @@ public class Day7a {
                 System.out.print(".");
             }
         }
-        System.out.println();
-        System.out.println(wires.get("a"));
     }
 
     public static <K, V> void putOrReplace(HashMap<K, V> map, K key, V value) {
